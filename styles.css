@@ -98,16 +98,22 @@ header.scrolled .logo-link svg { height: 26px; }
 
 /* ---------- Hero ---------- */
 .hero {
-  position: relative; min-height: 100vh;
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh; /* small viewport height — avoids URL-bar jump on mobile */
   display: flex; flex-direction: column; justify-content: flex-end;
   overflow: hidden;
 }
 .hero-media {
   position: absolute; inset: 0;
-  background:
+  background-image:
     linear-gradient(180deg, rgba(14,14,14,0.25) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.92) 100%),
-    url('assets/OHNI-00392.jpg') center 30% / cover no-repeat;
+    url('assets/OHNI-00392.jpg');
+  background-size: cover, cover;          /* explicit longhand: cover never stretches */
+  background-position: center, center 30%;
+  background-repeat: no-repeat, no-repeat;
   transform: scale(1.08);
+  transform-origin: center;
   animation: heroIn 2.4s cubic-bezier(.16,.84,.44,1) forwards;
 }
 @keyframes heroIn { to { transform: scale(1); } }
@@ -161,7 +167,7 @@ header.scrolled .logo-link svg { height: 26px; }
 
 /* ---------- Section shared ---------- */
 section { position: relative; }
-.section-pad { padding: 160px 0; }
+.section-pad { padding-top: 160px; padding-bottom: 160px; } /* vertical only — keeps .wrap horizontal padding */
 .section-head {
   display: flex; justify-content: space-between; align-items: flex-end;
   gap: 40px; margin-bottom: 88px; flex-wrap: wrap;
@@ -457,7 +463,8 @@ footer { background: var(--ink-soft); color: var(--paper); padding: 64px 0 32px;
   .process-grid { grid-template-columns: 1fr 1fr; }
   .service-row { grid-template-columns: 50px 1fr 40px; }
   .service-row p { display: none; }
-  .section-pad { padding: 100px 0; }
+  .section-pad { padding-top: 96px; padding-bottom: 96px; }
+  .section-head { margin-bottom: 56px; gap: 20px; }
   .hero-content { padding: 0 28px 64px; }
   .work .section-head { padding: 0 28px; }
   .filmstrip { padding: 0 28px 28px; }
@@ -468,13 +475,67 @@ footer { background: var(--ink-soft); color: var(--paper); padding: 64px 0 32px;
   .lb-info { padding: 24px 28px; }
   .lb-desc { display: none; }
 }
+
+/* ---------- Phones ---------- */
 @media (max-width: 600px) {
+  .section-pad { padding-top: 68px; padding-bottom: 68px; }
+  .section-head { margin-bottom: 40px; }
+
+  /* Hero — tuned crop + readable, smaller title */
+  .hero-media { background-position: center, center 42%; }
+  .hero-content { padding: 0 24px 56px; }
+  .hero-title { font-size: 40px; line-height: 1.02; }
+  .hero-sub { margin-top: 20px; font-size: 15px; }
+  .scroll-cue { left: 24px; bottom: 28px; }
+
+  /* Services */
+  .service-row { grid-template-columns: 38px 1fr 28px; gap: 16px; padding: 30px 0; }
+  .service-row:hover { padding: 30px 0; }            /* no hover-expand jump on touch */
+  .service-row:hover h3 { transform: none; }
+  .service-row h3 { font-size: 30px; }
+  .service-row .arrow { font-size: 18px; }
+
+  /* Work / filmstrip */
   .process-grid { grid-template-columns: 1fr; }
-  .frame { width: 80vw; height: 480px; }
-  .frame.tall { height: 520px; margin-top: 0; }
-  .about-stats { flex-wrap: wrap; gap: 32px; }
-  .lb-stage { padding: 60px 50px 120px; }
-  .lb-prev, .lb-next { padding: 10px 14px; font-size: 20px; }
+  .frame { width: 78vw; height: 460px; }
+  .frame.tall { height: 460px; margin-top: 0; }      /* equal heights read cleaner on phone */
+  .frame-overlay { padding: 24px; }
+  .frame-title { font-size: 26px; }
+
+  /* About */
+  .about-copy h2 { font-size: 30px; }
+  .about-stats { gap: 24px 28px; flex-wrap: wrap; margin-top: 36px; padding-top: 24px; }
+  .about-stats div { flex: 1 1 40%; }
+  .about-stats div strong { font-size: 32px; }
+
+  /* Testimonials */
+  .quote-section { padding: 80px 0; }
+  .quote-mark { font-size: 80px; }
+  .quote-nav { margin-top: 32px; }
+
+  /* Contact */
+  .contact { padding-top: 68px; }
+  .contact-copy { margin-bottom: 32px; }
+  .contact-btn { padding: 16px 24px; font-size: 11px; }
+  .form-wrap { margin-top: 56px; padding: 48px 0; }
+  .form-grid { gap: 24px; }
+  .submit-btn { width: 100%; }
+
+  /* Footer — let links wrap instead of clipping */
+  .footer-links { flex-wrap: wrap; gap: 18px 28px; }
+  .footer-bottom { flex-direction: column; gap: 8px; }
+
+  /* Lightbox */
+  .lb-stage { padding: 56px 46px 110px; }
+  .lb-prev, .lb-next { padding: 10px 13px; font-size: 20px; }
+  .lb-close { top: 16px; right: 20px; }
+}
+
+/* ---------- Small phones ---------- */
+@media (max-width: 380px) {
+  .hero-title { font-size: 36px; }
+  .frame { width: 82vw; height: 420px; }
+  .frame.tall { height: 420px; }
 }
 
 /* ---------- Accessibility ---------- */
