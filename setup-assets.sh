@@ -59,6 +59,7 @@ cp "$DL/UNICEF WASH/UNIC830.jpeg" "$ASSETS/"
 cp "$DL/UNICEF WASH/UNIC893.jpeg" "$ASSETS/"
 cp "$DL/UNICEF WASH/UNIC899.jpeg" "$ASSETS/"
 cp "$DL/UNICEF WASH/UNIC912.jpeg" "$ASSETS/"
+cp "$DL/UNICEF WASH/UNIC863.jpeg" "$ASSETS/"  # used for About section
 
 echo ""
 echo "Done. $(ls "$ASSETS" | wc -l | tr -d ' ') files now in /assets/"

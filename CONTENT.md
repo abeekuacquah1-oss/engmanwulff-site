@@ -28,8 +28,7 @@ All site copy traces back here. Never invent content. Missing items are marked [
 | 2022 | Year Founded |
 
 ### About Section Image
-`assets/OHNI-07900.jpg`
-[TODO — swap with a behind-the-scenes or team photo if available]
+`assets/UNIC863.jpeg` — student writing COVID-19 prevention measures on a chalkboard (UNICEF WASH project). Landscape source (6000×4000) shown in the 4:5 portrait frame with `object-position:38% center` to keep the student and chalkboard text in shot.
 
 ---
 
