@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engman Wulff — Creative & Media Services, Accra</title>
+<meta name="description" content="Engman Wulff is an Accra-based creative agency specializing in photography, documentary filmmaking, and video production.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E0E0E;
+    --ink-soft:#1A1714;
+    --paper:#F5F0E8;
+    --paper-warm:#FAF8F4;
+    --gold:#C9A96E;
+    --gold-dim:#9A7A42;
+    --line:rgba(245,240,232,0.14);
+    --line-dark:rgba(26,23,20,0.12);
+    --gray:#8C887F;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter',sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--gold);color:var(--ink);}
+
+  h1,h2,h3,.serif{
+    font-family:'Cormorant Garamond',Georgia,serif;
+    font-weight:300;
+    letter-spacing:0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Inter',sans-serif;
+    font-size:11px;
+    letter-spacing:0.32em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:500;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{display:block;max-width:100%;}
+
+  .wrap{max-width:1360px;margin:0 auto;padding:0 48px;}
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 1s cubic-bezier(.16,.84,.44,1),transform 1s cubic-bezier(.16,.84,.44,1);}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:28px 0;
+    transition:padding .4s ease, background .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    padding:16px 0;
+    background:rgba(14,14,14,0.86);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo-link{display:flex;align-items:center;gap:10px;}
+  .logo-link svg{height:34px;width:auto;transition:height .4s ease;}
+  header.scrolled .logo-link svg{height:26px;}
+
+  .nav-links{display:flex;gap:48px;align-items:center;}
+  .nav-links a{
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    color:var(--paper);opacity:0.78;
+    position:relative;padding-bottom:4px;
+    transition:opacity .3s ease;
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--gold);
+    transition:width .35s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    border:1px solid var(--gold-dim);
+    padding:10px 22px;
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;
+    transition:background .3s ease, color .3s ease, border-color .3s ease;
+  }
+  .nav-cta:hover{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+
+  .menu-btn{display:none;background:none;border:none;color:var(--paper);cursor:pointer;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;min-height:100vh;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    overflow:hidden;
+  }
+  .hero-media{
+    position:absolute;inset:0;
+    background:
+      linear-gradient(180deg, rgba(14,14,14,0.25) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.92) 100%),
+      url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2400&auto=format&fit=crop') center 30%/cover no-repeat;
+    transform:scale(1.08);
+    animation:heroIn 2.4s cubic-bezier(.16,.84,.44,1) forwards;
+  }
+  @keyframes heroIn{ to{ transform:scale(1); } }
+
+  .hero-content{position:relative;z-index:2;padding:0 48px 96px;}
+  .hero-eyebrow{
+    opacity:0;animation:fadeUp 1s ease forwards .6s;
+    margin-bottom:22px;
+  }
+  .hero-title{
+    font-size:clamp(48px,8vw,124px);
+    line-height:0.96;
+    color:var(--paper);
+    max-width:1100px;
+    opacity:0;animation:fadeUp 1.1s ease forwards .8s;
+  }
+  .hero-title em{font-style:italic;color:var(--gold);}
+  .hero-sub{
+    margin-top:28px;max-width:480px;
+    font-size:16px;line-height:1.7;color:rgba(245,240,232,0.72);
+    opacity:0;animation:fadeUp 1.1s ease forwards 1.1s;
+  }
+  @keyframes fadeUp{ from{opacity:0;transform:translateY(22px);} to{opacity:1;transform:translateY(0);} }
+
+  .scroll-cue{
+    position:absolute;bottom:36px;left:48px;z-index:2;
+    display:flex;align-items:center;gap:12px;
+    font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(245,240,232,0.6);
+    opacity:0;animation:fadeUp 1s ease forwards 1.6s;
+  }
+  .scroll-cue .line{width:36px;height:1px;background:var(--gold);position:relative;overflow:hidden;}
+
+  /* ---------- Marquee strip ---------- */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    overflow:hidden;white-space:nowrap;padding:18px 0;
+    background:var(--ink);
+  }
+  .marquee-track{display:inline-flex;animation:scroll 32s linear infinite;}
+  .marquee-track span{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;
+    color:var(--gray);padding:0 36px;white-space:nowrap;
+  }
+  .marquee-track span.gold{color:var(--gold);font-style:normal;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ---------- Section shared ---------- */
+  section{position:relative;}
+  .section-pad{padding:160px 0;}
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:40px;margin-bottom:88px;flex-wrap:wrap;
+  }
+  .section-title{font-size:clamp(36px,4.2vw,58px);line-height:1.05;max-width:640px;}
+  .section-desc{max-width:340px;font-size:14.5px;line-height:1.75;color:var(--gray);padding-bottom:6px;}
+
+  /* ---------- Services ---------- */
+  .services{background:var(--paper);color:var(--ink-soft);}
+  .services .eyebrow{color:var(--gold-dim);}
+  .services .section-desc{color:#6b665c;}
+  .service-list{border-top:1px solid var(--line-dark);}
+  .service-row{
+    border-bottom:1px solid var(--line-dark);
+    display:grid;grid-template-columns:100px 1fr 320px 40px;
+    align-items:center;gap:32px;
+    padding:38px 0;
+    cursor:pointer;
+    transition:padding .45s cubic-bezier(.16,.84,.44,1);
+  }
+  .service-row .num{font-size:13px;color:var(--gold-dim);letter-spacing:0.08em;}
+  .service-row h3{font-size:clamp(28px,3.6vw,46px);font-weight:400;transition:color .35s ease, transform .35s ease;}
+  .service-row p{font-size:14px;line-height:1.7;color:#6b665c;max-width:320px;}
+  .service-row .arrow{
+    font-size:22px;color:var(--gold-dim);
+    transition:transform .4s cubic-bezier(.16,.84,.44,1);
+    justify-self:end;
+  }
+  .service-row:hover{padding:50px 0;}
+  .service-row:hover h3{color:var(--gold-dim);transform:translateX(8px);}
+  .service-row:hover .arrow{transform:translateX(6px) rotate(45deg);}
+
+  /* ---------- Work showcase (signature element: horizontal filmstrip) ---------- */
+  .work{background:var(--ink);}
+  .work .section-head{padding:0 48px;}
+  .filmstrip-wrap{position:relative;}
+  .filmstrip{
+    display:flex;gap:24px;
+    overflow-x:auto;
+    padding:0 48px 36px;
+    scroll-snap-type:x proximity;
+    scrollbar-width:none;
+  }
+  .filmstrip::-webkit-scrollbar{display:none;}
+  .frame{
+    position:relative;flex:0 0 auto;
+    width:min(72vw,520px);height:640px;
+    scroll-snap-align:start;
+    overflow:hidden;
+    background:#15140f;
+  }
+  .frame img{
+    width:100%;height:100%;object-fit:cover;
+    filter:grayscale(15%) brightness(0.92);
+    transform:scale(1.02);
+    transition:transform 1.1s cubic-bezier(.16,.84,.44,1), filter .6s ease;
+  }
+  .frame:hover img{transform:scale(1.1);filter:grayscale(0%) brightness(1);}
+  .frame-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, transparent 50%, rgba(14,14,14,0.92) 100%);
+    display:flex;flex-direction:column;justify-content:flex-end;padding:32px;
+  }
+  .frame-tag{font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+  .frame-title{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--paper);font-weight:400;}
+  .frame-meta{font-size:12px;color:rgba(245,240,232,0.55);margin-top:6px;}
+  .frame.tall{height:720px;margin-top:-40px;}
+
+  .filmstrip-hint{
+    display:flex;align-items:center;gap:14px;padding:0 48px;margin-top:8px;
+    font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gray);
+  }
+  .filmstrip-hint .bar{flex:1;height:1px;background:var(--line);position:relative;max-width:200px;}
+
+  /* ---------- About / philosophy ---------- */
+  .about{background:var(--paper);color:var(--ink-soft);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;}
+  .about-media{position:relative;aspect-ratio:4/5;overflow:hidden;}
+  .about-media img{width:100%;height:100%;object-fit:cover;}
+  .about-media::after{
+    content:'';position:absolute;inset:18px;border:1px solid var(--gold);pointer-events:none;
+  }
+  .about-copy .eyebrow{color:var(--gold-dim);margin-bottom:24px;}
+  .about-copy h2{font-size:clamp(30px,3.6vw,46px);line-height:1.18;margin-bottom:28px;}
+  .about-copy p{font-size:15.5px;line-height:1.85;color:#54504a;margin-bottom:20px;max-width:480px;}
+  .about-stats{display:flex;gap:56px;margin-top:48px;border-top:1px solid var(--line-dark);padding-top:32px;}
+  .about-stats div strong{display:block;font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:var(--gold-dim);}
+  .about-stats div span{font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#8c887f;}
+
+  /* ---------- Process ---------- */
+  .process{background:var(--ink);}
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .process-card{background:var(--ink);padding:48px 36px;min-height:280px;display:flex;flex-direction:column;justify-content:space-between;}
+  .process-card .pnum{font-family:'Cormorant Garamond',serif;font-size:48px;color:var(--gold-dim);font-style:italic;}
+  .process-card h4{font-size:21px;font-weight:400;margin:24px 0 12px;}
+  .process-card p{font-size:13.5px;line-height:1.7;color:var(--gray);}
+
+  /* ---------- Testimonial / quote ---------- */
+  .quote-section{
+    background:var(--ink);
+    padding:140px 0;
+    text-align:center;
+    position:relative;
+  }
+  .quote-mark{font-family:'Cormorant Garamond',serif;font-size:120px;color:var(--gold-dim);opacity:0.5;line-height:0.5;}
+  .quote-text{
+    font-family:'Cormorant Garamond',serif;font-size:clamp(26px,3.4vw,42px);
+    font-style:italic;line-height:1.4;max-width:880px;margin:24px auto 32px;color:var(--paper);
+  }
+  .quote-attr{font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:var(--gold);}
+
+  /* ---------- Contact / CTA ---------- */
+  .contact{
+    background:var(--paper);color:var(--ink-soft);
+    padding:160px 0 0;
+  }
+  .contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;}
+  .contact-title{font-size:clamp(40px,6vw,84px);line-height:1.02;margin-bottom:32px;}
+  .contact-title em{color:var(--gold-dim);font-style:italic;}
+  .contact-copy{font-size:15.5px;line-height:1.8;color:#54504a;max-width:440px;margin-bottom:44px;}
+  .contact-btn{
+    display:inline-flex;align-items:center;gap:14px;
+    border:1px solid var(--ink-soft);padding:18px 32px;
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    transition:background .35s ease, color .35s ease;
+  }
+  .contact-btn:hover{background:var(--ink-soft);color:var(--paper);}
+
+  .contact-info{border-left:1px solid var(--line-dark);padding-left:60px;}
+  .contact-info .block{margin-bottom:36px;}
+  .contact-info .label{font-size:10.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;}
+  .contact-info .value{font-size:17px;font-family:'Cormorant Garamond',serif;}
+  .contact-info a.value:hover{color:var(--gold-dim);}
+  .social-row{display:flex;gap:22px;margin-top:8px;}
+  .social-row a{font-size:12px;letter-spacing:0.08em;border-bottom:1px solid transparent;padding-bottom:2px;}
+  .social-row a:hover{border-color:var(--gold-dim);}
+
+  .form-wrap{margin-top:90px;border-top:1px solid var(--line-dark);padding:80px 0;}
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 48px;}
+  .field{position:relative;margin-bottom:8px;}
+  .field.full{grid-column:1/-1;}
+  .field label{
+    position:absolute;top:14px;left:0;
+    font-size:15px;color:#9b9588;
+    transition:all .25s ease;pointer-events:none;
+  }
+  .field input,.field textarea,.field select{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--line-dark);
+    padding:14px 0 12px;font-size:15.5px;color:var(--ink-soft);font-family:'Inter',sans-serif;font-weight:300;
+    outline:none;transition:border-color .3s ease;
+  }
+  .field select{appearance:none;cursor:pointer;}
+  .field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold-dim);}
+  .field input:focus + label,.field input:not(:placeholder-shown) + label,
+  .field textarea:focus + label,.field textarea:not(:placeholder-shown) + label{
+    top:-12px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dim);
+  }
+  .field textarea{resize:none;min-height:90px;}
+  .submit-btn{
+    margin-top:24px;
+    background:var(--ink-soft);color:var(--paper);
+    border:none;padding:18px 38px;
+    font-size:12px;letter-spacing:0.18em;text-transform:uppercase;
+    cursor:pointer;transition:background .3s ease;
+  }
+  .submit-btn:hover{background:var(--gold-dim);}
+  .form-note{font-size:12.5px;color:#9b9588;margin-top:16px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink-soft);color:var(--paper);padding:64px 0 32px;}
+  .footer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:48px;border-bottom:1px solid var(--line);flex-wrap:wrap;gap:24px;}
+  .footer-top svg{height:30px;width:auto;}
+  .footer-links{display:flex;gap:40px;}
+  .footer-links a{font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(245,240,232,0.7);}
+  .footer-links a:hover{color:var(--gold);}
+  .footer-bottom{display:flex;justify-content:space-between;padding-top:28px;font-size:12px;color:rgba(245,240,232,0.45);flex-wrap:wrap;gap:12px;}
+  .footer-bottom a{color:rgba(245,240,232,0.45);}
+  .footer-bottom a:hover{color:var(--gold);}
+
+  /* ---------- Mobile nav ---------- */
+  .mobile-nav{
+    position:fixed;inset:0;background:var(--ink);z-index:200;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;gap:36px;
+    transform:translateY(-100%);transition:transform .55s cubic-bezier(.16,.84,.44,1);
+  }
+  .mobile-nav.open{transform:translateY(0);}
+  .mobile-nav a{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;}
+  .mobile-close{position:absolute;top:28px;right:48px;background:none;border:none;color:var(--paper);font-size:28px;cursor:pointer;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:980px){
+    .wrap{padding:0 28px;}
+    .nav-links{display:none;}
+    .menu-btn{display:block;}
+    .about-grid,.contact-grid,.form-grid{grid-template-columns:1fr;}
+    .contact-info{border-left:none;padding-left:0;border-top:1px solid var(--line-dark);padding-top:36px;margin-top:36px;}
+    .process-grid{grid-template-columns:1fr 1fr;}
+    .service-row{grid-template-columns:50px 1fr 40px;}
+    .service-row p{display:none;}
+    .section-pad{padding:100px 0;}
+    .hero-content{padding:0 28px 64px;}
+    .work .section-head{padding:0 28px;}
+    .filmstrip{padding:0 28px 28px;}
+    .filmstrip-hint{padding:0 28px;}
+  }
+  @media (max-width:600px){
+    .process-grid{grid-template-columns:1fr;}
+    .frame{width:80vw;height:480px;}
+    .frame.tall{height:520px;margin-top:0;}
+    .about-stats{flex-wrap:wrap;gap:32px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo-link" aria-label="Engman Wulff — Home">
+        <svg viewBox="0 0 600 170" xmlns="http://www.w3.org/2000/svg">
+          <text x="300" y="62" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="58" font-weight="300" fill="#F0EBE0" letter-spacing="16">ENGMAN</text>
+          <line x1="130" y1="80" x2="470" y2="80" stroke="#C9A96E" stroke-width="0.6"/>
+          <text x="300" y="135" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="58" font-weight="300" fill="#F0EBE0" letter-spacing="20">WULFF</text>
+          <text x="300" y="160" text-anchor="middle" font-family="Montserrat, 'Helvetica Neue', sans-serif" font-size="8.5" font-weight="300" fill="#C9A96E" letter-spacing="4.5">CREATIVE &amp; MEDIA SERVICES</text>
+        </svg>
+      </a>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact" class="nav-cta">Start a Project</a>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        <svg width="26" height="18" viewBox="0 0 26 18" fill="none"><path d="M0 1H26M0 9H26M0 17H26" stroke="#F5F0E8"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ MOBILE NAV ============ -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+  <a href="#work">Work</a>
+  <a href="#services">Services</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-media"></div>
+  <div class="hero-content">
+    <div class="eyebrow hero-eyebrow">Accra, Ghana — Est. 2024</div>
+    <h1 class="hero-title">Stories told<br>in <em>light</em> &amp; motion.</h1>
+    <p class="hero-sub">Engman Wulff is a creative agency working across photography, documentary film, and video production — crafting visual narratives for brands and storytellers across West Africa and beyond.</p>
+  </div>
+  <div class="scroll-cue"><span class="line"></span> Scroll</div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="gold">Photography</span><span>—</span>
+    <span class="gold">Documentary Film</span><span>—</span>
+    <span class="gold">Video Production</span><span>—</span>
+    <span class="gold">Based in Accra</span><span>—</span>
+    <span class="gold">Photography</span><span>—</span>
+    <span class="gold">Documentary Film</span><span>—</span>
+    <span class="gold">Video Production</span><span>—</span>
+    <span class="gold">Based in Accra</span><span>—</span>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap section-pad">
+    <div class="section-head reveal">
+      <h2 class="section-title">What we make</h2>
+      <p class="section-desc">Three disciplines, one studio. Each project is shaped by craft, patience, and an eye for the real.</p>
+    </div>
+
+    <div class="service-list reveal">
+      <div class="service-row">
+        <span class="num">01</span>
+        <h3>Photography</h3>
+        <p>Editorial, portrait, and commercial photography — shot on location across Accra and beyond.</p>
+        <span class="arrow">&#8599;</span>
+      </div>
+      <div class="service-row">
+        <span class="num">02</span>
+        <h3>Documentary Film</h3>
+        <p>Long-form, character-driven non-fiction films that follow real people and real moments.</p>
+        <span class="arrow">&#8599;</span>
+      </div>
+      <div class="service-row">
+        <span class="num">03</span>
+        <h3>Video Production</h3>
+        <p>Brand films, campaign content, and short-form video built for screens of every size.</p>
+        <span class="arrow">&#8599;</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK / FILMSTRIP ============ -->
+<section class="work" id="work">
+  <div class="wrap section-pad" style="padding-left:0;padding-right:0;">
+    <div class="section-head reveal">
+      <h2 class="section-title">Selected work</h2>
+      <p class="section-desc">A running reel of recent assignments. Drag or scroll sideways to explore.</p>
+    </div>
+
+    <div class="filmstrip-wrap reveal">
+      <div class="filmstrip">
+        <div class="frame">
+          <img src="https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1400&auto=format&fit=crop" alt="Portrait photography assignment">
+          <div class="frame-overlay">
+            <div class="frame-tag">Photography</div>
+            <div class="frame-title">Faces of Jamestown</div>
+            <div class="frame-meta">Editorial Series — Accra, 2025</div>
+          </div>
+        </div>
+        <div class="frame tall">
+          <img src="https://images.unsplash.com/photo-1500964757637-c85e8a162699?q=80&w=1400&auto=format&fit=crop" alt="Documentary filmmaking on location">
+          <div class="frame-overlay">
+            <div class="frame-tag">Documentary</div>
+            <div class="frame-title">The Tide Keepers</div>
+            <div class="frame-meta">Short Documentary — Coastal Ghana, 2025</div>
+          </div>
+        </div>
+        <div class="frame">
+          <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=1400&auto=format&fit=crop" alt="Brand video production shoot">
+          <div class="frame-overlay">
+            <div class="frame-tag">Video Production</div>
+            <div class="frame-title">Market Mornings</div>
+            <div class="frame-meta">Brand Film — Accra, 2024</div>
+          </div>
+        </div>
+        <div class="frame tall">
+          <img src="https://images.unsplash.com/photo-1517021897933-0e0319cfbc28?q=80&w=1400&auto=format&fit=crop" alt="On-location video production crew">
+          <div class="frame-overlay">
+            <div class="frame-tag">Video Production</div>
+            <div class="frame-title">Behind the Lens</div>
+            <div class="frame-meta">Campaign Film — Accra, 2024</div>
+          </div>
+        </div>
+        <div class="frame">
+          <img src="https://images.unsplash.com/photo-1531256456869-ce942a665e80?q=80&w=1400&auto=format&fit=crop" alt="Portrait and studio photography">
+          <div class="frame-overlay">
+            <div class="frame-tag">Photography</div>
+            <div class="frame-title">Studio Portraits</div>
+            <div class="frame-meta">Commercial — Accra, 2025</div>
+          </div>
+        </div>
+        <div class="frame tall">
+          <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?q=80&w=1400&auto=format&fit=crop" alt="Documentary storytelling project">
+          <div class="frame-overlay">
+            <div class="frame-tag">Documentary</div>
+            <div class="frame-title">Sons of the Soil</div>
+            <div class="frame-meta">Feature Documentary — In Production</div>
+          </div>
+        </div>
+      </div>
+      <div class="filmstrip-hint"><span class="bar"></span> Drag to explore <span class="bar"></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <div class="wrap section-pad">
+    <div class="about-grid">
+      <div class="about-media reveal">
+        <img src="https://images.unsplash.com/photo-1485178575877-1a13bf489dfe?q=80&w=1200&auto=format&fit=crop" alt="Engman Wulff creative team at work">
+      </div>
+      <div class="about-copy reveal">
+        <div class="eyebrow">Our Studio</div>
+        <h2>Built on craft,<br>rooted in Accra.</h2>
+        <p>Engman Wulff began with a simple belief: that the stories worth telling deserve to be told with care. We are a small studio of photographers, filmmakers, and producers working across Ghana and the wider region.</p>
+        <p>Every assignment — whether a documentary following one family for months, or a single afternoon on a portrait set — is approached with the same patience and discipline. We shoot what's real, and we shoot it well.</p>
+        <div class="about-stats">
+          <div><strong>40+</strong><span>Projects Delivered</span></div>
+          <div><strong>3</strong><span>Core Disciplines</span></div>
+          <div><strong>2024</strong><span>Founded in Accra</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="process">
+  <div class="wrap section-pad">
+    <div class="section-head reveal">
+      <h2 class="section-title">How we work</h2>
+      <p class="section-desc" style="color:var(--gray);">A simple, deliberate process from first conversation to final cut.</p>
+    </div>
+    <div class="process-grid reveal">
+      <div class="process-card">
+        <span class="pnum">01</span>
+        <div>
+          <h4>Discover</h4>
+          <p>We start by listening — to your brand, your story, and what you're hoping to say.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <span class="pnum">02</span>
+        <div>
+          <h4>Plan</h4>
+          <p>Concept, location, and shot list — every detail mapped before a single frame is shot.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <span class="pnum">03</span>
+        <div>
+          <h4>Produce</h4>
+          <p>On location or in studio, we shoot with patience, precision, and a documentary eye.</p>
+        </div>
+      </div>
+      <div class="process-card">
+        <span class="pnum">04</span>
+        <div>
+          <h4>Deliver</h4>
+          <p>Edited, color-graded, and delivered — ready for the screen it was made for.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE ============ -->
+<section class="quote-section">
+  <div class="wrap reveal">
+    <div class="quote-mark">"</div>
+    <p class="quote-text">Engman Wulff didn't just film our launch — they understood what we were trying to say before we'd fully said it ourselves.</p>
+    <div class="quote-attr">— Placeholder Client, Brand Director</div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="eyebrow" style="color:var(--gold-dim);margin-bottom:24px;">Get in Touch</div>
+        <h2 class="contact-title">Let's make<br>something <em>real</em>.</h2>
+        <p class="contact-copy">Have a project in mind — a brand film, a documentary, a photo assignment? Tell us about it and we'll be in touch within two business days.</p>
+        <a href="mailto:hello@engmanwulff.com" class="contact-btn">hello@engmanwulff.com &#8594;</a>
+      </div>
+
+      <div class="contact-info reveal">
+        <div class="block">
+          <div class="label">Studio</div>
+          <div class="value">Accra, Ghana</div>
+        </div>
+        <div class="block">
+          <div class="label">Email</div>
+          <a href="mailto:hello@engmanwulff.com" class="value">hello@engmanwulff.com</a>
+        </div>
+        <div class="block">
+          <div class="label">Phone</div>
+          <a href="tel:+233000000000" class="value">+233 00 000 0000</a>
+        </div>
+        <div class="block">
+          <div class="label">Follow</div>
+          <div class="social-row">
+            <a href="#" aria-label="Instagram (placeholder)">Instagram</a>
+            <a href="#" aria-label="YouTube (placeholder)">YouTube</a>
+            <a href="#" aria-label="LinkedIn (placeholder)">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-wrap reveal">
+      <form class="form-grid" id="contactForm">
+        <div class="field">
+          <input type="text" id="fname" placeholder=" " required>
+          <label for="fname">Full Name</label>
+        </div>
+        <div class="field">
+          <input type="email" id="femail" placeholder=" " required>
+          <label for="femail">Email Address</label>
+        </div>
+        <div class="field">
+          <input type="text" id="fcompany" placeholder=" ">
+          <label for="fcompany">Company / Brand</label>
+        </div>
+        <div class="field">
+          <select id="fservice" required>
+            <option value="" disabled selected></option>
+            <option>Photography</option>
+            <option>Documentary Film</option>
+            <option>Video Production</option>
+            <option>Something else</option>
+          </select>
+          <label for="fservice" style="top:-12px;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold-dim);">Service Interested In</label>
+        </div>
+        <div class="field full">
+          <textarea id="fmessage" placeholder=" " required></textarea>
+          <label for="fmessage">Tell us about your project</label>
+        </div>
+        <div class="field full">
+          <button type="submit" class="submit-btn">Send Inquiry &#8594;</button>
+          <p class="form-note">This form is for demonstration. Connect it to your email service or a form handler (e.g. Formspree) to receive live submissions.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <svg viewBox="0 0 600 170" xmlns="http://www.w3.org/2000/svg">
+        <text x="300" y="62" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="58" font-weight="300" fill="#F0EBE0" letter-spacing="16">ENGMAN</text>
+        <line x1="130" y1="80" x2="470" y2="80" stroke="#C9A96E" stroke-width="0.6"/>
+        <text x="300" y="135" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, serif" font-size="58" font-weight="300" fill="#F0EBE0" letter-spacing="20">WULFF</text>
+        <text x="300" y="160" text-anchor="middle" font-family="Montserrat, 'Helvetica Neue', sans-serif" font-size="8.5" font-weight="300" fill="#C9A96E" letter-spacing="4.5">CREATIVE &amp; MEDIA SERVICES</text>
+      </svg>
+      <div class="footer-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Engman Wulff. All rights reserved.</span>
+      <span>Accra, Ghana — <a href="mailto:hello@engmanwulff.com">hello@engmanwulff.com</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile nav
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileClose');
+  menuBtn.addEventListener('click', () => mobileNav.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Filmstrip drag-to-scroll
+  const filmstrip = document.querySelector('.filmstrip');
+  let isDown = false, startX, scrollLeft;
+  filmstrip.addEventListener('mousedown', (e) => {
+    isDown = true;
+    filmstrip.style.cursor = 'grabbing';
+    startX = e.pageX - filmstrip.offsetLeft;
+    scrollLeft = filmstrip.scrollLeft;
+  });
+  ['mouseleave','mouseup'].forEach(evt => filmstrip.addEventListener(evt, () => {
+    isDown = false;
+    filmstrip.style.cursor = 'grab';
+  }));
+  filmstrip.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - filmstrip.offsetLeft;
+    filmstrip.scrollLeft = scrollLeft - (x - startX) * 1.4;
+  });
+  filmstrip.style.cursor = 'grab';
+
+  // Contact form (demo only)
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const btn = this.querySelector('.submit-btn');
+    const original = btn.textContent;
+    btn.textContent = 'Message Sent ✓';
+    setTimeout(() => { btn.textContent = original; this.reset(); }, 2600);
+  });
+</script>
+
+</body>
+</html>
