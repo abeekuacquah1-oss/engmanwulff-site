@@ -1,7 +1,44 @@
 # DEPLOY.md — Engman Wulff Deployment Guide
 
-Live domain: **https://engmanwulff.com** (GoDaddy)
-Host: **Cloudflare Pages** (recommended — free, global CDN, zero config for static sites)
+Live domain: **https://engmanwulff.com** (domain registered at GoDaddy)
+Host: **Vercel** (chosen — free, fast, auto-deploys from GitHub)
+Repo: **https://github.com/abeekuacquah1-oss/engmanwulff-site**
+
+---
+
+## ACTIVE SETUP — Vercel + GoDaddy domain
+
+The code lives on GitHub. Vercel imports the repo and redeploys automatically
+on every `git push`. GoDaddy stays as the domain registrar only (DNS points
+at Vercel).
+
+### Deploy on Vercel
+1. https://vercel.com → Sign up → **Continue with GitHub**
+2. **Add New… → Project** → import `engmanwulff-site`
+3. Framework Preset: **Other**, Build Command: *(empty)*, Output Directory: *(default)*
+4. **Deploy** → live at `engmanwulff-site.vercel.app`
+
+### Add the custom domain
+5. Project → **Settings → Domains** → add `engmanwulff.com` and `www.engmanwulff.com`
+
+### GoDaddy DNS records (My Products → engmanwulff.com → DNS)
+
+| Type  | Name | Value                   | TTL |
+|-------|------|-------------------------|-----|
+| A     | `@`  | `76.76.21.21`           | 600 |
+| CNAME | `www`| `cname.vercel-dns.com`  | 600 |
+
+- Delete any existing `A` record on `@` pointing to a GoDaddy parked IP first.
+- If a `www` CNAME already exists, edit it rather than adding a duplicate.
+- Propagation: ~10–30 min. Vercel issues SSL automatically.
+
+### Future updates
+Edit files locally → `git add -A && git commit -m "..." && git push`.
+Vercel auto-deploys the new version in ~30s.
+
+---
+
+## Alternative host (Cloudflare Pages) — kept for reference
 
 ---
 
