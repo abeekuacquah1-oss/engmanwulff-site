@@ -58,6 +58,47 @@ filmstrip.addEventListener('mousemove', (e) => {
   filmstrip.scrollLeft = scrollLeft - dragDelta * 1.4;
 });
 
+/* ---------- Auto-scroll filmstrip (seamless infinite marquee) ----------
+   Adapted from the common "infinite moving cards" pattern (21st.dev /
+   Aceternity) as vanilla JS — duplicate the cards once, then advance
+   scrollLeft and wrap at the loop width for a seam-free loop. */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let autoPaused = false, loopWidth = 0;
+
+const originalFrames = [...filmstrip.querySelectorAll('.frame')];
+originalFrames.forEach(f => {
+  const clone = f.cloneNode(true);
+  clone.setAttribute('aria-hidden', 'true');  // duplicates are decorative
+  clone.setAttribute('tabindex', '-1');
+  filmstrip.appendChild(clone);
+});
+
+function measureLoop() {
+  const frames = filmstrip.querySelectorAll('.frame');
+  const firstClone = frames[originalFrames.length];
+  // exact repeat distance = gap between an original card and its clone
+  loopWidth = firstClone ? (firstClone.offsetLeft - frames[0].offsetLeft) : filmstrip.scrollWidth / 2;
+}
+measureLoop();
+window.addEventListener('resize', measureLoop);
+
+// Pause so cards stay readable / tappable
+filmstrip.addEventListener('mouseenter', () => { autoPaused = true; });
+filmstrip.addEventListener('mouseleave', () => { autoPaused = false; });
+filmstrip.addEventListener('touchstart', () => { autoPaused = true; }, { passive: true });
+filmstrip.addEventListener('touchend',   () => { setTimeout(() => { autoPaused = false; }, 2500); }, { passive: true });
+
+if (!reduceMotion) {
+  const SPEED = 0.5; // px per frame (~30px/s) — slow and elegant
+  (function autoTick() {
+    if (!autoPaused && !isDragging && loopWidth > 0) {
+      filmstrip.scrollLeft += SPEED;
+      if (filmstrip.scrollLeft >= loopWidth) filmstrip.scrollLeft -= loopWidth;
+    }
+    requestAnimationFrame(autoTick);
+  })();
+}
+
 /* ---------- Lightbox ---------- */
 const lightbox  = document.getElementById('lightbox');
 const lbImg     = document.getElementById('lbImg');
@@ -96,18 +137,22 @@ function closeLightbox() {
   document.body.style.overflow = '';
 }
 
-document.querySelectorAll('.frame').forEach(frame => {
+// Keyboard access + labels on the original cards only (clones are aria-hidden)
+originalFrames.forEach(frame => {
   frame.setAttribute('tabindex', '0');
   frame.setAttribute('role', 'button');
   frame.setAttribute('aria-label', 'Open ' + frame.dataset.title + ' gallery');
-
-  frame.addEventListener('click', (e) => {
-    if (Math.abs(dragDelta) > 6) return; // suppress click after drag
-    openLightbox(frame);
-  });
   frame.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(frame); }
   });
+});
+
+// Click (delegated) — works for both the originals and the duplicated cards
+filmstrip.addEventListener('click', (e) => {
+  const frame = e.target.closest('.frame');
+  if (!frame) return;
+  if (Math.abs(dragDelta) > 6) return; // suppress click right after a drag
+  openLightbox(frame);
 });
 
 document.getElementById('lbClose').addEventListener('click', closeLightbox);

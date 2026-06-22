@@ -204,7 +204,8 @@ section { position: relative; }
   display: flex; gap: 24px;
   overflow-x: auto;
   padding: 0 48px 36px;
-  scroll-snap-type: x proximity;
+  scroll-snap-type: none;     /* off: continuous auto-scroll, no snapping back */
+  scroll-behavior: auto;      /* instant — programmatic auto-scroll stays smooth */
   scrollbar-width: none;
   cursor: grab;
 }
