@@ -245,6 +245,20 @@ section { position: relative; }
 .frame-meta { font-size: 12px; color: rgba(245,240,232,0.55); margin-top: 6px; }
 .frame.tall { height: 720px; margin-top: -40px; }
 
+/* Play badge — signals a video project card */
+.play-badge {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 66px; height: 66px; border-radius: 50%;
+  background: rgba(14,14,14,0.42);
+  border: 1px solid rgba(245,240,232,0.7);
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; z-index: 2;
+  transition: background .35s ease, transform .35s ease, border-color .35s ease;
+}
+.play-badge svg { width: 24px; height: 24px; margin-left: 3px; color: var(--paper); transition: color .35s ease; }
+.frame:hover .play-badge { background: var(--gold); border-color: var(--gold); transform: translate(-50%, -50%) scale(1.06); }
+.frame:hover .play-badge svg { color: var(--ink); }
+
 .filmstrip-hint {
   display: flex; align-items: center; gap: 14px; padding: 0 48px; margin-top: 8px;
   font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray);
@@ -271,6 +285,12 @@ section { position: relative; }
   object-fit: contain;
   display: block;
   user-select: none;
+}
+.lb-stage video {
+  max-width: 100%; max-height: 100%;
+  width: auto; height: auto;
+  display: block;
+  background: #000;
 }
 
 .lb-close {

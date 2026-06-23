@@ -34,7 +34,7 @@
 <link rel="preload" as="image" href="assets/hero.webp">
 
 <!-- Styles -->
-<link rel="stylesheet" href="styles.css?v=9">
+<link rel="stylesheet" href="styles.css?v=10">
 
 <!-- Vercel Web Analytics — privacy-friendly, no cookies.
      Enable it once in your Vercel project: Project → Analytics → Enable.
@@ -175,6 +175,30 @@
       <p id="workEmpty" class="work-empty" style="display:none;">No projects in this category yet — check back soon.</p>
       <div class="filmstrip" role="list">
 
+        <!-- Adom Cocoa (video) -->
+        <div class="frame frame--video" role="listitem"
+          data-title="The Rebuild Facility — Adom Cocoa"
+          data-category="Documentary"
+          data-year="2024"
+          data-desc="Adom Cocoa is empowering nearly 2,000 Ghanaian cocoa farmers through climate-smart agriculture, sustainable land restoration, and a profit-sharing model that strengthens both livelihoods and environmental resilience."
+          data-video="adom-cocoa.mp4"
+          data-poster="adom-poster.webp"
+          data-gallery='["REB05001.webp","REB04009.webp","REB03247.webp","REB03517.webp","REB03359.webp","REB03578.webp","REB03757.webp","REB03808.webp","REB03853.webp"]'>
+          <img
+            src="assets/adom-cover.webp"
+            alt="The Rebuild Facility — Adom Cocoa: a farmer harvesting cocoa pods, documentary by Engman Wulff"
+            width="520" height="640"
+            loading="lazy">
+          <span class="play-badge" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          </span>
+          <div class="frame-overlay">
+            <div class="frame-tag">Documentary · Film</div>
+            <div class="frame-title">The Rebuild Facility</div>
+            <div class="frame-meta">Adom Cocoa — 2024</div>
+          </div>
+        </div>
+
         <!-- 1. The Last Portrait -->
         <div class="frame" role="listitem"
           data-title="The Last Portrait"
@@ -284,6 +308,7 @@
   <button class="lb-prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
   <div class="lb-stage">
     <img id="lbImg" src="" alt="" loading="eager">
+    <video id="lbVideo" controls playsinline preload="metadata" style="display:none"></video>
   </div>
   <button class="lb-next" id="lbNext" aria-label="Next image">&#8250;</button>
   <div class="lb-info">
@@ -510,6 +535,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=9"></script>
+<script src="main.js?v=10"></script>
 </body>
 </html>

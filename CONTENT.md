@@ -130,6 +130,18 @@ All site copy traces back here. Never invent content. Missing items are marked [
 
 ---
 
+### 6. The Rebuild Facility — Adom Cocoa (VIDEO project)
+- **Category:** Documentary
+- **Year:** 2024
+- **Description:** Adom Cocoa is empowering nearly 2,000 Ghanaian cocoa farmers through climate-smart agriculture, sustainable land restoration, and a profit-sharing model that strengthens both livelihoods and environmental resilience.
+- **Cover:** `assets/adom-cover.webp` — portrait crop of the interviewed cocoa-farmer woman (from REB03247), with a play-badge overlay.
+- **Video:** `assets/adom-cocoa.mp4` — plays in the lightbox on click (source `Adom Cocoa - Rebuild Facility.mp4` was 514MB HEVC 1080p60; transcoded to H.264 1080p30, 42MB, `+faststart` for progressive streaming, `preload="metadata"` so it only loads when opened). Poster: `assets/adom-poster.webp`.
+- **Gallery (landscape, after the video):**
+  - `assets/REB05001.webp`, `REB04009.webp`, `REB03247.webp`, `REB03517.webp`, `REB03359.webp`, `REB03578.webp`, `REB03757.webp`, `REB03808.webp`, `REB03853.webp`
+- **Source folder:** `/Downloads/Adom Cocoa/`
+
+---
+
 ## Testimonials
 
 ### Quote 1
