@@ -106,17 +106,26 @@ header.scrolled .logo-link svg { height: 26px; }
 }
 .hero-media {
   position: absolute; inset: 0;
-  background-image:
-    linear-gradient(180deg, rgba(14,14,14,0.25) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.92) 100%),
-    url('assets/hero.webp');
-  background-size: cover, cover;          /* explicit longhand: cover never stretches */
-  background-position: center, center 30%;
-  background-repeat: no-repeat, no-repeat;
+  overflow: hidden;
   transform: scale(1.08);
   transform-origin: center;
   animation: heroIn 2.4s cubic-bezier(.16,.84,.44,1) forwards;
 }
 @keyframes heroIn { to { transform: scale(1); } }
+/* Cross-fading slideshow layers */
+.hero-slide {
+  position: absolute; inset: 0;
+  background-size: cover;                 /* cover never stretches */
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1.6s ease;
+}
+.hero-slide.active { opacity: 1; }
+.hero-scrim {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(14,14,14,0.25) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.92) 100%);
+}
 
 .hero-content { position: relative; z-index: 2; padding: 0 48px 96px; }
 .hero-eyebrow { opacity: 0; animation: fadeUp 1s ease forwards .6s; margin-bottom: 22px; }
@@ -476,14 +485,9 @@ footer { background: var(--ink-soft); color: var(--paper); padding: 64px 0 32px;
   .section-pad { padding-top: 68px; padding-bottom: 68px; }
   .section-head { margin-bottom: 40px; }
 
-  /* Hero — full-bleed on mobile, cropped to the LEFT so the volleyball player
-     and the man in the green shirt stay in frame (right side cropped off). */
-  .hero-media {
-    background-image:
-      linear-gradient(180deg, rgba(14,14,14,0.25) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.92) 100%),
-      url('assets/hero.webp');
-    background-position: center, 8% center;   /* left-biased crop */
-  }
+  /* Hero — full-bleed on mobile, slides cropped to the LEFT so the main
+     subject stays in frame (right side cropped off). */
+  .hero-slide { background-position: 8% center; }
   .hero-content { padding: 0 24px 56px; }
   .hero-title { font-size: 40px; line-height: 1.02; }
   .hero-sub { margin-top: 20px; font-size: 15px; }
