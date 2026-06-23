@@ -151,6 +151,17 @@ if (!reduceMotion) {
   })();
 }
 
+/* ---------- Hero slideshow (cross-fade) ---------- */
+const heroSlides = document.querySelectorAll('.hero-slide');
+if (heroSlides.length > 1 && !reduceMotion) {
+  let heroIdx = 0;
+  setInterval(() => {
+    heroSlides[heroIdx].classList.remove('active');
+    heroIdx = (heroIdx + 1) % heroSlides.length;
+    heroSlides[heroIdx].classList.add('active');
+  }, 6000);
+}
+
 /* ---------- Lightbox ---------- */
 const lightbox  = document.getElementById('lightbox');
 const lbImg     = document.getElementById('lbImg');
