@@ -82,14 +82,18 @@ function measureLoop() {
 measureLoop();
 window.addEventListener('resize', measureLoop);
 
-// Pause so cards stay readable / tappable
-filmstrip.addEventListener('mouseenter', () => { autoPaused = true; });
-filmstrip.addEventListener('mouseleave', () => { autoPaused = false; });
+// Pause on hover ONLY for real hover devices (desktop). On touchscreens
+// 'mouseenter' fires on tap but 'mouseleave' often never does, which would
+// leave the strip paused forever — so phones rely on the touch handlers only.
+if (window.matchMedia('(hover: hover)').matches) {
+  filmstrip.addEventListener('mouseenter', () => { autoPaused = true; });
+  filmstrip.addEventListener('mouseleave', () => { autoPaused = false; });
+}
 filmstrip.addEventListener('touchstart', () => { autoPaused = true; }, { passive: true });
-filmstrip.addEventListener('touchend',   () => { setTimeout(() => { autoPaused = false; }, 2500); }, { passive: true });
+filmstrip.addEventListener('touchend',   () => { setTimeout(() => { autoPaused = false; }, 1500); }, { passive: true });
 
 if (!reduceMotion) {
-  const SPEED = 0.5; // px per frame (~30px/s) — slow and elegant
+  const SPEED = 0.6; // px per frame (~36px/s) — slow and elegant
   (function autoTick() {
     if (!autoPaused && !isDragging && loopWidth > 0) {
       filmstrip.scrollLeft += SPEED;

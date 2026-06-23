@@ -191,7 +191,8 @@ section { position: relative; }
 .service-row .num { font-size: 13px; color: var(--gold-dim); letter-spacing: 0.08em; }
 .service-row h3 { font-size: clamp(28px, 3.6vw, 46px); font-weight: 400; transition: color .35s ease, transform .35s ease; }
 .service-row p { font-size: 14px; line-height: 1.7; color: #6b665c; max-width: 320px; }
-.service-row .arrow { font-size: 22px; color: var(--gold-dim); transition: transform .4s cubic-bezier(.16,.84,.44,1); justify-self: end; }
+.service-row .arrow { color: var(--gold-dim); transition: transform .4s cubic-bezier(.16,.84,.44,1); justify-self: end; display: inline-flex; align-items: center; }
+.service-row .arrow svg { display: block; width: 22px; height: 22px; }
 .service-row:hover { padding: 50px 0; }
 .service-row:hover h3 { color: var(--gold-dim); transform: translateX(8px); }
 .service-row:hover .arrow { transform: translateX(6px) rotate(45deg); }
@@ -500,7 +501,7 @@ footer { background: var(--ink-soft); color: var(--paper); padding: 64px 0 32px;
   .service-row:hover { padding: 30px 0; }            /* no hover-expand jump on touch */
   .service-row:hover h3 { transform: none; }
   .service-row h3 { font-size: 30px; }
-  .service-row .arrow { font-size: 18px; }
+  .service-row .arrow svg { width: 19px; height: 19px; }
 
   /* Work / filmstrip */
   .process-grid { grid-template-columns: 1fr; }
