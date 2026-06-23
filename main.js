@@ -58,30 +58,77 @@ filmstrip.addEventListener('mousemove', (e) => {
   filmstrip.scrollLeft = scrollLeft - dragDelta * 1.4;
 });
 
-/* ---------- Auto-scroll filmstrip (seamless infinite marquee) ----------
-   Adapted from the common "infinite moving cards" pattern (21st.dev /
-   Aceternity) as vanilla JS — duplicate the cards once, then advance
-   scrollLeft and wrap at the loop width for a seam-free loop. */
+/* ---------- Auto-scroll filmstrip + category filter ----------
+   Seamless infinite marquee (vanilla adaptation of the 21st.dev / Aceternity
+   "infinite moving cards" pattern). Matching cards are duplicated enough to
+   fill the strip for a seam-free loop; the strip can be filtered by category. */
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-let autoPaused = false, loopWidth = 0;
+let autoPaused = false, loopWidth = 0, visibleCount = 0;
 
 const originalFrames = [...filmstrip.querySelectorAll('.frame')];
-originalFrames.forEach(f => {
-  const clone = f.cloneNode(true);
-  clone.setAttribute('aria-hidden', 'true');  // duplicates are decorative
-  clone.setAttribute('tabindex', '-1');
-  filmstrip.appendChild(clone);
-});
+const workEmpty = document.getElementById('workEmpty');
 
 function measureLoop() {
   const frames = filmstrip.querySelectorAll('.frame');
-  const firstClone = frames[originalFrames.length];
-  // exact repeat distance = gap between an original card and its clone
-  loopWidth = firstClone ? (firstClone.offsetLeft - frames[0].offsetLeft) : filmstrip.scrollWidth / 2;
+  const firstClone = frames[visibleCount];           // first duplicated card
+  loopWidth = firstClone ? (firstClone.offsetLeft - frames[0].offsetLeft) : 0;
 }
-measureLoop();
+
+// Rebuild the strip for a category ('all' = every project). Duplicates the
+// matching set enough times to exceed the viewport so the loop never gaps.
+function buildStrip(category) {
+  filmstrip.querySelectorAll('.frame').forEach(f => f.remove());
+  const matches = originalFrames.filter(f => category === 'all' || f.dataset.category === category);
+  visibleCount = matches.length;
+
+  if (!matches.length) {                       // e.g. no Video Production projects yet
+    filmstrip.style.display = 'none';
+    if (workEmpty) workEmpty.style.display = 'block';
+    loopWidth = 0;
+    return;
+  }
+  filmstrip.style.display = 'flex';
+  if (workEmpty) workEmpty.style.display = 'none';
+
+  matches.forEach(f => filmstrip.appendChild(f));            // set #1 (real cards)
+  const last = matches[matches.length - 1];
+  const unit = (last.offsetLeft + last.offsetWidth - matches[0].offsetLeft) + 24; // + gap
+  const copies = Math.max(2, Math.ceil((filmstrip.clientWidth * 2.2) / Math.max(1, unit)) + 1);
+  for (let s = 1; s < copies; s++) {
+    matches.forEach(f => {
+      const clone = f.cloneNode(true);
+      clone.dataset.clone = 'true';
+      clone.setAttribute('aria-hidden', 'true');
+      clone.setAttribute('tabindex', '-1');
+      filmstrip.appendChild(clone);
+    });
+  }
+  measureLoop();
+  filmstrip.scrollLeft = 0;
+}
+
+buildStrip('all');
 window.addEventListener('resize', measureLoop);
 window.addEventListener('load', measureLoop);   // re-measure once images settle
+
+// Filter wiring: chips in the Work section AND the service rows both filter.
+function setFilter(category) {
+  buildStrip(category);
+  document.querySelectorAll('.filter-chip').forEach(c =>
+    c.classList.toggle('active', c.dataset.filter === category));
+}
+document.querySelectorAll('.filter-chip').forEach(chip =>
+  chip.addEventListener('click', () => setFilter(chip.dataset.filter)));
+document.querySelectorAll('.service-row[data-filter]').forEach(row => {
+  const go = () => {
+    setFilter(row.dataset.filter);
+    document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+  };
+  row.setAttribute('role', 'button');
+  row.setAttribute('tabindex', '0');
+  row.addEventListener('click', go);
+  row.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+});
 
 // Pause on hover ONLY for real hover devices (desktop). On touchscreens
 // 'mouseenter' fires on tap but 'mouseleave' often never does, which would

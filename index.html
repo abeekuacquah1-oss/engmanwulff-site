@@ -34,7 +34,7 @@
 <link rel="preload" as="image" href="assets/hero.webp">
 
 <!-- Styles -->
-<link rel="stylesheet" href="styles.css?v=6">
+<link rel="stylesheet" href="styles.css?v=7">
 
 <!-- Vercel Web Analytics — privacy-friendly, no cookies.
      Enable it once in your Vercel project: Project → Analytics → Enable.
@@ -125,19 +125,19 @@
     </div>
 
     <div class="service-list reveal">
-      <div class="service-row">
+      <div class="service-row" data-filter="Photography">
         <span class="num">01</span>
         <h3>Photography</h3>
         <p>Editorial, portrait, and documentary photography — shot on location across Accra and beyond.</p>
         <span class="arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9 6 18 6 18 15"/></svg></span>
       </div>
-      <div class="service-row">
+      <div class="service-row" data-filter="Documentary">
         <span class="num">02</span>
         <h3>Documentary Film</h3>
         <p>Long-form, character-driven non-fiction films that follow real people, real communities, and real moments.</p>
         <span class="arrow" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><line x1="6" y1="18" x2="18" y2="6"/><polyline points="9 6 18 6 18 15"/></svg></span>
       </div>
-      <div class="service-row">
+      <div class="service-row" data-filter="Video Production">
         <span class="num">03</span>
         <h3>Video Production</h3>
         <p>Brand films, conference coverage, campaign content, and short-form video built for screens of every size.</p>
@@ -158,7 +158,15 @@
       <p class="section-desc">A selection of recent projects. Drag or scroll to explore — click any card to view the full gallery.</p>
     </div>
 
+    <div class="work-filters reveal" role="group" aria-label="Filter projects by category">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="Photography">Photography</button>
+      <button class="filter-chip" data-filter="Documentary">Documentary Film</button>
+      <button class="filter-chip" data-filter="Video Production">Video Production</button>
+    </div>
+
     <div class="filmstrip-wrap reveal">
+      <p id="workEmpty" class="work-empty" style="display:none;">No projects in this category yet — check back soon.</p>
       <div class="filmstrip" role="list">
 
         <!-- 1. The Last Portrait -->
@@ -496,6 +504,6 @@
   </div>
 </footer>
 
-<script src="main.js?v=6"></script>
+<script src="main.js?v=7"></script>
 </body>
 </html>

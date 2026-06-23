@@ -167,7 +167,7 @@ section { position: relative; }
   display: grid; grid-template-columns: 100px 1fr 320px 40px;
   align-items: center; gap: 32px;
   padding: 38px 0;
-  cursor: default;
+  cursor: pointer;
   transition: padding .45s cubic-bezier(.16,.84,.44,1);
 }
 .service-row .num { font-size: 13px; color: var(--gold-dim); letter-spacing: 0.08em; }
@@ -182,6 +182,19 @@ section { position: relative; }
 /* ---------- Work / filmstrip ---------- */
 .work { background: var(--ink); }
 .work .section-head { padding: 0 48px; }
+
+/* Category filter chips */
+.work-filters { display: flex; flex-wrap: wrap; gap: 10px; padding: 0 48px; margin: -44px 0 44px; }
+.filter-chip {
+  background: none; border: 1px solid var(--line); color: var(--paper);
+  font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 9px 18px; cursor: pointer; opacity: 0.72;
+  transition: background .25s ease, color .25s ease, border-color .25s ease, opacity .25s ease;
+}
+.filter-chip:hover { opacity: 1; border-color: var(--gold-dim); }
+.filter-chip.active { background: var(--gold); color: var(--ink); border-color: var(--gold); opacity: 1; }
+.filter-chip:focus-visible { outline: 1px solid var(--gold); outline-offset: 2px; }
+.work-empty { padding: 24px 48px 0; color: var(--gray); font-size: 14.5px; }
 .filmstrip-wrap { position: relative; }
 .filmstrip {
   display: flex; gap: 24px;
@@ -447,6 +460,8 @@ footer { background: var(--ink-soft); color: var(--paper); padding: 64px 0 32px;
   .section-head { margin-bottom: 56px; gap: 20px; }
   .hero-content { padding: 0 28px 64px; }
   .work .section-head { padding: 0 28px; }
+  .work-filters { padding: 0 28px; margin: -28px 0 32px; }
+  .work-empty { padding: 16px 28px 0; }
   .filmstrip { padding: 0 28px 28px; }
   .filmstrip-hint { padding: 0 28px; }
   .lb-stage { padding: 70px 70px 130px; }
