@@ -81,6 +81,7 @@ function measureLoop() {
 }
 measureLoop();
 window.addEventListener('resize', measureLoop);
+window.addEventListener('load', measureLoop);   // re-measure once images settle
 
 // Pause on hover ONLY for real hover devices (desktop). On touchscreens
 // 'mouseenter' fires on tap but 'mouseleave' often never does, which would

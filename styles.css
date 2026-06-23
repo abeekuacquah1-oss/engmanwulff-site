@@ -147,24 +147,6 @@ header.scrolled .logo-link svg { height: 26px; }
 }
 .scroll-cue .line { width: 36px; height: 1px; background: var(--gold); }
 
-/* ---------- Marquee strip ---------- */
-.marquee {
-  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-  overflow: hidden; white-space: nowrap; padding: 18px 0;
-  background: var(--ink);
-}
-.marquee-track { display: inline-flex; animation: scroll 32s linear infinite; }
-.marquee-track span {
-  font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px;
-  color: var(--gray); padding: 0 36px; white-space: nowrap;
-}
-.marquee-track span.gold {
-  color: var(--gold); font-style: normal;
-  font-family: 'Inter', sans-serif; font-size: 11px;
-  letter-spacing: 0.2em; text-transform: uppercase;
-}
-@keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
 /* ---------- Section shared ---------- */
 section { position: relative; }
 .section-pad { padding-top: 160px; padding-bottom: 160px; } /* vertical only — keeps .wrap horizontal padding */
