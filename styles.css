@@ -108,7 +108,7 @@ header.scrolled .logo-link svg { height: 26px; }
   position: absolute; inset: 0;
   background-image:
     linear-gradient(180deg, rgba(14,14,14,0.25) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.92) 100%),
-    url('assets/hero.jpg');
+    url('assets/hero.webp');
   background-size: cover, cover;          /* explicit longhand: cover never stretches */
   background-position: center, center 30%;
   background-repeat: no-repeat, no-repeat;
@@ -487,7 +487,7 @@ footer { background: var(--ink-soft); color: var(--paper); padding: 64px 0 32px;
   .hero-media {
     background-image:
       linear-gradient(180deg, rgba(14,14,14,0.25) 0%, rgba(14,14,14,0.35) 45%, rgba(14,14,14,0.92) 100%),
-      url('assets/hero-mobile.jpg');
+      url('assets/hero.webp');
     background-position: center, 8% center;   /* left-biased crop */
   }
   .hero-content { padding: 0 24px 56px; }
