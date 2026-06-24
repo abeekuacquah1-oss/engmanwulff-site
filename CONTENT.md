@@ -142,6 +142,17 @@ All site copy traces back here. Never invent content. Missing items are marked [
 
 ---
 
+### 7. Transforming Ghana Fisheries with Ocean Data Sensors (VIDEO project)
+- **Category:** Documentary
+- **Year:** 2024
+- **Description:** Ocean Data Network is empowering Ghana's small-scale fishers with real-time ocean data and innovative IoT technology, enabling smarter, more sustainable fishing practices while strengthening coastal livelihoods.
+- **Cover:** `assets/odn-cover.webp` — portrait crop of the interviewed project lead (from ODN0), with a play-badge overlay.
+- **Video:** `assets/odn.mp4` — plays in the lightbox on click (source `Transforming Ghana Fisheries - ODN.mp4` was 105MB H.264 1080p24; re-encoded CRF 30, 46MB, `+faststart`, `preload="metadata"`). Poster: `assets/odn-poster.webp`.
+- **Gallery (landscape, after the video):** `assets/ODN0.webp` … `ODN9.webp` (10 images).
+- **Source folder:** `/Downloads/Ocean Data Network/`
+
+---
+
 ## Testimonials
 
 ### Quote 1
