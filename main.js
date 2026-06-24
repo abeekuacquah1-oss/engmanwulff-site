@@ -159,7 +159,7 @@ if (heroSlides.length > 1 && !reduceMotion) {
     heroSlides[heroIdx].classList.remove('active');
     heroIdx = (heroIdx + 1) % heroSlides.length;
     heroSlides[heroIdx].classList.add('active');
-  }, 6000);
+  }, 5000);
 }
 
 /* ---------- Lightbox ---------- */
