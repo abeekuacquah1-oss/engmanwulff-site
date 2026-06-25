@@ -376,6 +376,24 @@ section { position: relative; }
 }
 .quote-dot.active { background: var(--gold); }
 
+/* ---------- Clients / Trusted by ---------- */
+.clients { background: var(--ink); }
+.client-grid {
+  display: flex; flex-wrap: wrap;
+  gap: 26px 52px; align-items: baseline;
+  border-top: 1px solid var(--line); padding-top: 52px;
+}
+.client-grid span {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(20px, 2.1vw, 27px); font-weight: 400;
+  color: rgba(245,240,232,0.55);
+  transition: color .3s ease;
+}
+.client-grid span:hover { color: var(--gold); }
+@media (max-width: 600px) {
+  .client-grid { gap: 18px 32px; padding-top: 36px; }
+}
+
 /* ---------- Contact ---------- */
 .contact { background: var(--paper); color: var(--ink-soft); padding: 160px 0 0; }
 .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; }
