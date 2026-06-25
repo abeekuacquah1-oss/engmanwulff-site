@@ -317,3 +317,24 @@ contactForm.addEventListener('submit', async function (e) {
 document.querySelectorAll('.footer-year').forEach(el => {
   el.textContent = new Date().getFullYear();
 });
+
+/* ---------- Floating "Send Inquiry" CTA ----------
+   Appears once you scroll past the hero; tucks away when the contact form
+   or footer is on screen so it never overlaps the actual form. */
+const floatingCta = document.getElementById('floatingCta');
+if (floatingCta) {
+  const contactSec = document.getElementById('contact');
+
+  function updateCta() {
+    const pastHero = window.scrollY > window.innerHeight * 0.6;
+    // Hide once the contact form starts entering the lower viewport (and stays
+    // hidden through the footer below it) so it never covers the real form.
+    const nearContact = contactSec
+      ? contactSec.getBoundingClientRect().top < window.innerHeight * 0.85
+      : false;
+    floatingCta.classList.toggle('show', pastHero && !nearContact);
+  }
+  window.addEventListener('scroll', updateCta, { passive: true });
+  window.addEventListener('resize', updateCta, { passive: true });
+  updateCta();
+}
