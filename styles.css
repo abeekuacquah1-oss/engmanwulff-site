@@ -380,18 +380,19 @@ section { position: relative; }
 .clients { background: var(--ink); }
 .client-grid {
   display: flex; flex-wrap: wrap;
-  gap: 26px 52px; align-items: baseline;
-  border-top: 1px solid var(--line); padding-top: 52px;
+  align-items: center; justify-content: center;
+  gap: 44px 56px;
+  border-top: 1px solid var(--line); padding-top: 56px;
 }
-.client-grid span {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(20px, 2.1vw, 27px); font-weight: 400;
-  color: rgba(245,240,232,0.55);
-  transition: color .3s ease;
+.client-grid img {
+  max-height: 40px; max-width: 190px; width: auto; height: auto;
+  opacity: 0.6;
+  transition: opacity .35s ease, transform .35s ease;
 }
-.client-grid span:hover { color: var(--gold); }
+.client-grid img:hover { opacity: 1; transform: scale(1.05); }
 @media (max-width: 600px) {
-  .client-grid { gap: 18px 32px; padding-top: 36px; }
+  .client-grid { gap: 32px 40px; padding-top: 38px; }
+  .client-grid img { max-height: 32px; max-width: 140px; }
 }
 
 /* ---------- Contact ---------- */
