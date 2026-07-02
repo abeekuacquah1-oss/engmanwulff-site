@@ -338,3 +338,29 @@ if (floatingCta) {
   window.addEventListener('resize', updateCta, { passive: true });
   updateCta();
 }
+
+/* ---------- Camera cursor + shutter "snap" on click (desktop only) ---------- */
+if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+  const cur = document.getElementById('camCursor');
+  const flash = document.getElementById('camFlash');
+  if (cur && flash) {
+    document.documentElement.classList.add('cam-on');
+    document.addEventListener('mousemove', e => {
+      cur.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px)';
+    }, { passive: true });
+    document.addEventListener('mousedown', () => cur.classList.add('press'));
+    document.addEventListener('mouseup',   () => cur.classList.remove('press'));
+    document.addEventListener('click', () => {
+      flash.classList.remove('snap');
+      void flash.offsetWidth;         // restart the animation
+      flash.classList.add('snap');
+    });
+    // Highlight (gold) over anything clickable
+    document.addEventListener('mouseover', e => {
+      cur.classList.toggle('on-target',
+        !!e.target.closest('a, button, .frame, .filter-chip, .service-row, [role="button"]'));
+    });
+    document.addEventListener('mouseleave', () => { cur.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { cur.style.opacity = '1'; });
+  }
+}

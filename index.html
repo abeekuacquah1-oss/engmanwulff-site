@@ -34,7 +34,7 @@
 <link rel="preload" as="image" href="assets/hero.webp">
 
 <!-- Styles -->
-<link rel="stylesheet" href="styles.css?v=21">
+<link rel="stylesheet" href="styles.css?v=22">
 
 <!-- Vercel Web Analytics — privacy-friendly, no cookies.
      Enable it once in your Vercel project: Project → Analytics → Enable.
@@ -579,6 +579,18 @@
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
 </a>
 
-<script src="main.js?v=21"></script>
+<!-- ============ CAMERA CURSOR (desktop) ============ -->
+<div class="cam-cursor" id="camCursor" aria-hidden="true">
+  <div class="cam-cursor-inner">
+    <svg viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20 5h-3.2l-1.1-1.6a1 1 0 0 0-.83-.44H9.15a1 1 0 0 0-.83.44L7.2 5H4a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"/>
+      <circle cx="12" cy="13" r="3.4" fill="none" stroke="#0E0E0E" stroke-width="1.5"/>
+      <circle cx="12" cy="13" r="1.5" fill="#0E0E0E"/>
+    </svg>
+  </div>
+</div>
+<div class="cam-flash" id="camFlash" aria-hidden="true"></div>
+
+<script src="main.js?v=22"></script>
 </body>
 </html>
