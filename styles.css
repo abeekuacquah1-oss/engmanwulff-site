@@ -471,26 +471,14 @@ section { position: relative; }
   background: rgba(192,57,43,0.06);
 }
 
-/* ---------- Gold cursor highlight (desktop pointer only) ---------- */
-.cursor-glow { display: none; }
+/* ---------- Gold cursor over clickable elements (desktop pointer only) ---------- */
 @media (hover: hover) and (pointer: fine) {
-  .cursor-glow {
-    display: block; position: fixed; top: 0; left: 0; z-index: 9999;
-    width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%;
-    border: 1.5px solid rgba(201,169,110,0.55);
-    background: rgba(201,169,110,0.05);
-    pointer-events: none; will-change: transform;
-    transition: width .22s ease, height .22s ease, margin .22s ease,
-                background .22s ease, border-color .22s ease, opacity .25s ease;
+  a, button, [role="button"], select, summary, label[for],
+  .frame, .service-row, .filter-chip, .submit-btn, .contact-btn,
+  .floating-cta, .nav-cta, .quote-dot, .quote-nav-btn,
+  .lb-close, .lb-prev, .lb-next, .menu-btn, .mobile-close {
+    cursor: url("assets/cursor-gold.png") 3 2, pointer;
   }
-  .cursor-glow.on-target {
-    width: 52px; height: 52px; margin: -26px 0 0 -26px;
-    background: rgba(201,169,110,0.15);
-    border-color: var(--gold);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .cursor-glow { transition: opacity .2s ease; }
 }
 
 /* ---------- Floating CTA ---------- */

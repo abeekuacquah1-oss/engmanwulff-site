@@ -339,20 +339,5 @@ if (floatingCta) {
   updateCta();
 }
 
-/* ---------- Gold cursor highlight (desktop only) ----------
-   Keeps the normal cursor; a soft gold ring follows the pointer and grows
-   over clickable elements. Desktop pointer only, so mobile is untouched. */
-if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  const glow = document.getElementById('cursorGlow');
-  if (glow) {
-    document.addEventListener('mousemove', e => {
-      glow.style.transform = 'translate(' + e.clientX + 'px, ' + e.clientY + 'px)';
-    }, { passive: true });
-    document.addEventListener('mouseover', e => {
-      glow.classList.toggle('on-target',
-        !!e.target.closest('a, button, .frame, .filter-chip, .service-row, [role="button"]'));
-    });
-    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
-    document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
-  }
-}
+/* Gold cursor over clickable elements is handled purely in CSS (cursor: url).
+   No JS needed, so touch devices are entirely unaffected. */
