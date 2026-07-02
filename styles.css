@@ -377,22 +377,24 @@ section { position: relative; }
 .quote-dot.active { background: var(--gold); }
 
 /* ---------- Clients / Trusted by ---------- */
-.clients { background: var(--ink); }
+.clients { background: var(--paper); color: var(--ink-soft); }
+.clients .eyebrow { color: var(--gold-dim); }
+.clients .section-title { color: var(--ink-soft); }
+.clients .section-desc { color: #6b665c; }
 .client-grid {
   display: flex; flex-wrap: wrap;
   align-items: center; justify-content: center;
-  gap: 44px 56px;
-  border-top: 1px solid var(--line); padding-top: 56px;
+  gap: 46px 60px;
+  border-top: 1px solid var(--line-dark); padding-top: 56px;
 }
 .client-grid img {
-  max-height: 40px; max-width: 190px; width: auto; height: auto;
-  opacity: 0.6;
-  transition: opacity .35s ease, transform .35s ease;
+  max-height: 46px; max-width: 200px; width: auto; height: auto;
+  transition: transform .35s ease, filter .35s ease;
 }
-.client-grid img:hover { opacity: 1; transform: scale(1.05); }
+.client-grid img:hover { transform: scale(1.05); }
 @media (max-width: 600px) {
-  .client-grid { gap: 32px 40px; padding-top: 38px; }
-  .client-grid img { max-height: 32px; max-width: 140px; }
+  .client-grid { gap: 34px 40px; padding-top: 38px; }
+  .client-grid img { max-height: 34px; max-width: 150px; }
 }
 
 /* ---------- Contact ---------- */
