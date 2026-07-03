@@ -78,7 +78,10 @@ function measureLoop() {
 // matching set enough times to exceed the viewport so the loop never gaps.
 function buildStrip(category) {
   filmstrip.querySelectorAll('.frame').forEach(f => f.remove());
-  const matches = originalFrames.filter(f => category === 'all' || f.dataset.category === category);
+  // 'all' (homepage default) shows only cards NOT flagged data-home="false";
+  // clicking a specific category tab reveals every project in that category.
+  const matches = originalFrames.filter(f =>
+    category === 'all' ? f.dataset.home !== 'false' : f.dataset.category === category);
   visibleCount = matches.length;
 
   if (!matches.length) {                       // e.g. no Video Production projects yet

@@ -153,6 +153,50 @@ All site copy traces back here. Never invent content. Missing items are marked [
 
 ---
 
+### 8. Ashesi MBA — Star Oil (VIDEO project) — TAB-ONLY
+- **Category:** Video Production (hidden from homepage; shown only under the Video Production tab)
+- **Year:** 2026 [CONFIRM]
+- **Description:** [TODO — client one-liner pending] Interim: An Ashesi University MBA consulting project with Star Oil Ghana, examining the country's transition to electric vehicles and what it means for the fuel-retail business.
+- **Cover:** `assets/ashesi-cover.webp` — portrait crop of an interviewee (from ashesi-mba.mp4), with a play-badge overlay.
+- **Video:** `assets/ashesi-mba.mp4` — source `Ashesi MBA - Star Oil Ghana.mp4` (368MB H.264 1080p24) → H.264 CRF 30, 32MB, `+faststart`, `preload="metadata"`. Poster: `assets/ashesi-poster.webp`.
+- **Gallery:** none (video only).
+- **Source file:** `/Downloads/Ashesi MBA - Star Oil Ghana.mp4`
+
+---
+
+### 9. Fair4All — Learnings (VIDEO project) — TAB-ONLY
+- **Category:** Video Production (hidden from homepage; shown only under the Video Production tab)
+- **Year:** 2026 [CONFIRM]
+- **Description:** [TODO — client one-liner pending] Interim: A learning exchange convening civil-society and development partners — including Oxfam Novib — to debate a just energy transition, alternative business models, and local content across West Africa's extractive economy.
+- **Cover:** `assets/fair4all-cover.webp` — portrait crop of an interviewee (from fair4all.mp4), with a play-badge overlay.
+- **Video:** `assets/fair4all.mp4` — source `Fair4All Learnings Rough Cut 2.mp4` (145MB HEVC 1080p25) → H.264 CRF 30, 33MB, `+faststart`, `preload="metadata"`. Poster: `assets/fair4all-poster.webp`.
+- **Gallery:** none (video only).
+- **Source file:** `/Downloads/Fair4All Learnings Rough Cut 2.mp4`
+
+---
+
+### 10. GG — Fashion Film (VIDEO project) — TAB-ONLY
+- **Category:** Video Production (hidden from homepage; shown only under the Video Production tab)
+- **Year:** 2026 [CONFIRM]
+- **Title:** [CONFIRM — "GG" brand name / correct title]
+- **Description:** [TODO — client one-liner pending] Interim: A black-and-white fashion film celebrating contemporary African print design and tailoring.
+- **Cover:** `assets/gg-cover.webp` — portrait crop of a model (from gg-slideshow.mp4), with a play-badge overlay.
+- **Video:** `assets/gg-slideshow.mp4` — source `GG-SLIDESHOW BW.mp4` (176MB H.264 1080p24) → H.264 CRF 30, 24MB, `+faststart`, `preload="metadata"`. Poster: `assets/gg-poster.webp`.
+- **Gallery:** none (video only).
+- **Source file:** `/Downloads/GG-SLIDESHOW BW.mp4`
+
+---
+
+### 11. Health Innovation Festival — TAB-ONLY
+- **Category:** Photography (hidden from homepage; shown only under the Photography tab)
+- **Year:** 2026 (confirmed on-site branding: "#HIFest2026")
+- **Description:** [TODO — client one-liner pending] Interim: Event photography from the 2026 Health Innovation Festival, convened by the Africa Health Collaborative and the Mastercard Foundation to advance innovation across African healthcare.
+- **Cover:** `assets/hifest-cover.webp` — portrait crop of an attendee in front of the festival backdrop.
+- **Gallery (landscape):** `assets/hifest1.webp` … `hifest16.webp` (16 images).
+- **Source folder:** `/Downloads/Health Innovation Festival/`
+
+---
+
 ## Testimonials
 
 ### Quote 1
