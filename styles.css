@@ -69,8 +69,12 @@ header.scrolled {
 }
 nav { display: flex; align-items: center; justify-content: space-between; }
 .logo-link { display: flex; align-items: center; gap: 10px; }
-.logo-link img { height: 40px; width: auto; display: block; transition: height .4s ease; }
-header.scrolled .logo-link img { height: 30px; }
+.logo-link img {
+  height: 96px; width: auto; display: block;
+  filter: drop-shadow(0 2px 10px rgba(0,0,0,0.45));
+  transition: height .45s cubic-bezier(.16,.84,.44,1), filter .4s ease;
+}
+header.scrolled .logo-link img { height: 34px; filter: none; }
 
 .nav-links { display: flex; gap: 48px; align-items: center; }
 .nav-links a {
@@ -583,6 +587,8 @@ footer { background: var(--ink-soft); color: var(--paper); padding: 64px 0 32px;
 @media (max-width: 600px) {
   .section-pad { padding-top: 68px; padding-bottom: 68px; }
   .section-head { margin-bottom: 40px; }
+  .logo-link img { height: 60px; }
+  header.scrolled .logo-link img { height: 28px; }
 
   /* Hero — full-bleed on mobile; each slide uses its own focal point so the
      subject stays in frame (set per-slide via --pos-m). */
