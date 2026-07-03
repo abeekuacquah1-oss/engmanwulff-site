@@ -155,8 +155,8 @@ All site copy traces back here. Never invent content. Missing items are marked [
 
 ### 8. Ashesi MBA — Star Oil (VIDEO project) — TAB-ONLY
 - **Category:** Video Production (hidden from homepage; shown only under the Video Production tab)
-- **Year:** 2026 [CONFIRM]
-- **Description:** [TODO — client one-liner pending] Interim: An Ashesi University MBA consulting project with Star Oil Ghana, examining the country's transition to electric vehicles and what it means for the fuel-retail business.
+- **Year:** 2026
+- **Description:** Ashesi MBA students tackled a live business case with Star Oil, exploring how the rise of electric vehicles (EVs) is transforming the downstream petroleum sector. Through research, fieldwork, and data analytics, they developed evidence-based recommendations for the company's leadership.
 - **Cover:** `assets/ashesi-cover.webp` — portrait crop of an interviewee (from ashesi-mba.mp4), with a play-badge overlay.
 - **Video:** `assets/ashesi-mba.mp4` — source `Ashesi MBA - Star Oil Ghana.mp4` (368MB H.264 1080p24) → H.264 CRF 30, 32MB, `+faststart`, `preload="metadata"`. Poster: `assets/ashesi-poster.webp`.
 - **Gallery:** none (video only).
@@ -164,10 +164,10 @@ All site copy traces back here. Never invent content. Missing items are marked [
 
 ---
 
-### 9. Fair4All — Learnings (VIDEO project) — TAB-ONLY
+### 9. Oxfam Novib Fair4All — Learnings (VIDEO project) — TAB-ONLY
 - **Category:** Video Production (hidden from homepage; shown only under the Video Production tab)
-- **Year:** 2026 [CONFIRM]
-- **Description:** [TODO — client one-liner pending] Interim: A learning exchange convening civil-society and development partners — including Oxfam Novib — to debate a just energy transition, alternative business models, and local content across West Africa's extractive economy.
+- **Year:** 2024
+- **Description:** Fair4All is a global 5-year Oxfam initiative focused on transforming commodity value chains to prioritize people and the planet over profit. In Ghana, it successfully ran from 2021 to 2025, specifically empowering women and marginalized communities in the cocoa, gold, and petroleum sectors.
 - **Cover:** `assets/fair4all-cover.webp` — portrait crop of an interviewee (from fair4all.mp4), with a play-badge overlay.
 - **Video:** `assets/fair4all.mp4` — source `Fair4All Learnings Rough Cut 2.mp4` (145MB HEVC 1080p25) → H.264 CRF 30, 33MB, `+faststart`, `preload="metadata"`. Poster: `assets/fair4all-poster.webp`.
 - **Gallery:** none (video only).
@@ -175,12 +175,11 @@ All site copy traces back here. Never invent content. Missing items are marked [
 
 ---
 
-### 10. GG — Fashion Film (VIDEO project) — TAB-ONLY
+### 10. Goodbye Gold Coast — Visualizer (VIDEO project) — TAB-ONLY
 - **Category:** Video Production (hidden from homepage; shown only under the Video Production tab)
-- **Year:** 2026 [CONFIRM]
-- **Title:** [CONFIRM — "GG" brand name / correct title]
-- **Description:** [TODO — client one-liner pending] Interim: A black-and-white fashion film celebrating contemporary African print design and tailoring.
-- **Cover:** `assets/gg-cover.webp` — portrait crop of a model (from gg-slideshow.mp4), with a play-badge overlay.
+- **Year:** 2023
+- **Description:** A few hours to the emancipation of the Gold Coast, excitement and uncertainty about the future are rife. While some believe in the new Ghana, others hold reservations. Goodbye, Gold Coast is an audiodrama that explores the different emotions of a city at the edge of freedom, depicted through the lives of Rose, a young teacher and her European lover, as they face a decision as important to them as the birth of a new nation.
+- **Cover:** `assets/gg-cover.webp` — portrait crop of a character (from gg-slideshow.mp4), with a play-badge overlay. (Asset filenames keep the `gg-` prefix from the source `GG-SLIDESHOW BW.mp4`.)
 - **Video:** `assets/gg-slideshow.mp4` — source `GG-SLIDESHOW BW.mp4` (176MB H.264 1080p24) → H.264 CRF 30, 24MB, `+faststart`, `preload="metadata"`. Poster: `assets/gg-poster.webp`.
 - **Gallery:** none (video only).
 - **Source file:** `/Downloads/GG-SLIDESHOW BW.mp4`
