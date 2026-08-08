@@ -50,9 +50,11 @@ Support files: `CONTENT.md`, `DESIGN-SYSTEM.md`, `DEPLOY.md`, `robots.txt`, `sit
 
 ## Typography
 
-- **Display / serif:** Cormorant Garamond (300, 400, 400i, 500) — headings, hero, quotes, logo
-- **UI / sans:** Inter (300, 400, 500, 600) — body, labels, nav, eyebrows
+- **Display:** Space Grotesk (300–700) — headings, hero, section titles, quotes. Bold, modern, "artistic but professional" agency feel. (No true italic — use upright + gold for accents, never faux-italic.)
+- **UI / body:** Inter (300, 400, 500, 600) — body, labels, nav, eyebrows
 - **Eyebrow style:** Inter 500, 11px, 0.32em letter-spacing, uppercase, `var(--gold)`
+
+**Note:** As of the Aug 2026 redesign the whole page is one continuous black canvas (`--ink` end to end — hero, services, work, about, process, ethics, clients, contact, footer all `var(--ink)`). Client logos (colour) sit on `--paper-warm` chips so they read on black. Earlier alternating light/dark sections are gone. Fonts were previously Cormorant Garamond + Inter.
 
 ---
 
