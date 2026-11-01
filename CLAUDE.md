@@ -56,7 +56,7 @@ Only two surfaces stay dark: the **hero** (full-bleed photo slideshow with a scr
 
 - **Everything:** Montserrat (300, 400, 500, 600, 700; 300i/400i) — one corporate sans for headings, body, nav, eyebrows, logo context. Light weights (300) for large display; 500/600 for tracked uppercase labels.
 - **Eyebrow style:** Montserrat 600, 11px, 0.28em letter-spacing, uppercase, `var(--gold-dim)`
-- Logo: cleaned **gold** wordmark `assets/logo-ew-gold.webp` (the "LIGHT" corner watermark was cropped off; `logo-ew-ink.webp` is a dark version kept in reserve). The old `logo-ew.webp` still has the LIGHT watermark — don't use it.
+- **Logo (Nov 2026): the "A4 shutter" identity.** An inline SVG in the header and footer — a 6-blade camera-shutter mark (one blade gold `#C9A96E`) + "ENGMAN WULFF" stacked wordmark (Montserrat 600 / 300). It uses `currentColor`, so it's cream over the hero photo (`--hero-text`, with a drop-shadow) and ink on white when the header is `.scrolled`; the gold blade is constant. The mark spins into focus once on load (`@keyframes shutterSpin`, suppressed under reduced-motion). Favicon/app icons (`assets/favicon.svg`, `favicon-32.png`, `apple-touch-icon.png`) are the shutter too. The old raster wordmarks (`logo-ew*.webp`) are retired; the original `logo-ew.webp` also had a baked-in "LIGHT" watermark — don't use it.
 
 **History:** Started Cormorant Garamond + Inter on a warm dark palette → briefly all-black (Aug 2026) → a Space Grotesk / Fraunces experiment (reverted) → **Nov 2026: pure-white minimal Montserrat redesign** (current), modelled on ekowquansah.com. All work (photos, films, galleries) was preserved through the reskin; only the look changed.
 
