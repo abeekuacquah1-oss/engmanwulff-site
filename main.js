@@ -344,3 +344,33 @@ if (floatingCta) {
 
 /* Gold cursor over clickable elements is handled purely in CSS (cursor: url).
    No JS needed, so touch devices are entirely unaffected. */
+
+/* ---------- Shutter logo: spin-in on load, then random snaps/spins ----------
+   Visual only (no audio). Header mark only. Respects reduced-motion and
+   pauses while the tab is hidden. */
+(function () {
+  var mark = document.querySelector('.logo-link .brand-mark');
+  if (!mark) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // reset to a clean state when any animation ends so it can re-fire
+  mark.addEventListener('animationend', function () {
+    mark.classList.remove('spin-in', 'snap', 'turn');
+  });
+
+  function play(cls) {
+    mark.classList.remove('snap', 'turn', 'spin-in');
+    void mark.offsetWidth;            // reflow → restart the animation
+    mark.classList.add(cls);
+  }
+
+  play('spin-in');                    // on load
+
+  function tick() {
+    if (!document.hidden) {
+      play(Math.random() < 0.8 ? 'snap' : 'turn');   // mostly a click, sometimes a full spin
+    }
+    setTimeout(tick, 5000 + Math.random() * 9000);   // every 5–14s
+  }
+  setTimeout(tick, 4000 + Math.random() * 4000);      // first one 4–8s after load
+})();

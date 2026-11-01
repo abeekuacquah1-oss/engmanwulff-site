@@ -80,12 +80,24 @@ header.scrolled .logo-link { color: var(--ink); }
 }
 header.scrolled .brand-logo { height: 28px; filter: none; }
 .brand-logo text { font-family: 'Montserrat', sans-serif; }
-/* Shutter spins into focus on load */
-.brand-mark { transform-box: fill-box; transform-origin: center; animation: shutterSpin 1.1s cubic-bezier(.2,.75,.2,1) .25s both; }
-@keyframes shutterSpin {
+/* Shutter mark — spins into focus on load, then snaps/spins at random (driven by main.js) */
+.brand-mark { transform-box: fill-box; transform-origin: center; }
+.brand-mark.spin-in { animation: shutterSpinIn 1.1s cubic-bezier(.2,.75,.2,1) .2s both; }
+.brand-mark.snap    { animation: shutterClick .36s ease both; }
+.brand-mark.turn    { animation: shutterTurn .95s cubic-bezier(.34,.06,.2,1) both; }
+@keyframes shutterSpinIn {
   from { transform: rotate(-150deg); opacity: 0; }
   to   { transform: rotate(0deg);    opacity: 1; }
 }
+/* quick shutter "fire" — blades jolt + contract, like a release */
+@keyframes shutterClick {
+  0%   { transform: rotate(0deg)   scale(1);    }
+  28%  { transform: rotate(32deg)  scale(0.80); }
+  52%  { transform: rotate(17deg)  scale(0.90); }
+  78%  { transform: rotate(-5deg)  scale(1.04); }
+  100% { transform: rotate(0deg)   scale(1);    }
+}
+@keyframes shutterTurn { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 .nav-links { display: flex; gap: 46px; align-items: center; }
 .nav-links a {
