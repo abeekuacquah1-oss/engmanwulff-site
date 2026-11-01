@@ -34,27 +34,31 @@ Support files: `CONTENT.md`, `DESIGN-SYSTEM.md`, `DEPLOY.md`, `robots.txt`, `sit
 
 ## Design Tokens (CSS custom properties)
 
+As of the **Nov 2026 minimal-white redesign** (modelled on the clean, airy look of ekowquansah.com) the site is **pure white, minimal, Montserrat**, with gold kept only as an accent and in the logo:
+
 ```css
---ink:        #0E0E0E   /* near-black background */
---ink-soft:   #1A1714   /* footer, about-copy contrast */
---paper:      #F5F0E8   /* warm off-white text/backgrounds */
---paper-warm: #FAF8F4   /* lighter warm white */
---gold:       #C9A96E   /* primary accent */
---gold-dim:   #9A7A42   /* darker gold for light backgrounds */
---line:       rgba(245,240,232,0.14)   /* subtle dividers on dark */
---line-dark:  rgba(26,23,20,0.12)      /* dividers on light */
---gray:       #8C887F   /* secondary text */
+--bg:          #FFFFFF   /* pure white page background */
+--ink:         #141414   /* primary text (dark) */
+--ink-soft:    #3A3A3A   /* secondary dark text */
+--gold:        #C9A96E   /* accent */
+--gold-dim:    #9A7A42   /* readable gold on white (eyebrows, focus) */
+--line:        rgba(20,20,20,0.12)   /* hairline dividers on white */
+--line-strong: rgba(20,20,20,0.22)
+--gray:        #6E6A64   /* secondary text */
+--hero-text:   #FBFAF8   /* light text over the hero photos */
 ```
+
+Only two surfaces stay dark: the **hero** (full-bleed photo slideshow with a scrim + light text) and the **lightbox** (immersive viewer). Everything else is white (a couple of sections use `#FAF9F7` for a whisper of contrast). The ethics/clients bands use `#FAF9F7`.
 
 ---
 
 ## Typography
 
-- **Display / serif:** Cormorant Garamond (300, 400, 400i, 500) — headings, hero, quotes, logo
-- **UI / sans:** Inter (300, 400, 500, 600) — body, labels, nav, eyebrows
-- **Eyebrow style:** Inter 500, 11px, 0.32em letter-spacing, uppercase, `var(--gold)`
+- **Everything:** Montserrat (300, 400, 500, 600, 700; 300i/400i) — one corporate sans for headings, body, nav, eyebrows, logo context. Light weights (300) for large display; 500/600 for tracked uppercase labels.
+- **Eyebrow style:** Montserrat 600, 11px, 0.28em letter-spacing, uppercase, `var(--gold-dim)`
+- Logo: cleaned **gold** wordmark `assets/logo-ew-gold.webp` (the "LIGHT" corner watermark was cropped off; `logo-ew-ink.webp` is a dark version kept in reserve). The old `logo-ew.webp` still has the LIGHT watermark — don't use it.
 
-**Note:** As of the Aug 2026 redesign the whole page is one continuous black canvas (`--ink` end to end — hero, services, work, about, process, ethics, clients, contact, footer all `var(--ink)`). Client logos (colour) sit on `--paper-warm` chips so they read on black. Earlier alternating light/dark sections are gone. (Fonts stayed Cormorant Garamond + Inter — a Space Grotesk experiment was tried and reverted.)
+**History:** Started Cormorant Garamond + Inter on a warm dark palette → briefly all-black (Aug 2026) → a Space Grotesk / Fraunces experiment (reverted) → **Nov 2026: pure-white minimal Montserrat redesign** (current), modelled on ekowquansah.com. All work (photos, films, galleries) was preserved through the reskin; only the look changed.
 
 ---
 
